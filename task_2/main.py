@@ -23,10 +23,8 @@ def arg_parser() -> tuple:
     parser = argparse.ArgumentParser()
     parser.add_argument('xml_file')
     args = parser.parse_args()
-    return pass
 
 
 if __name__ == '__main__':
     root_logger = logging.getLogger()
     set_logger(root_logger)
-    file_copy.main(xml_file=xms_file, error_ignore=error_ignore, folder_create=folder_create, file_replace=file_replace)
