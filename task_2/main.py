@@ -1,4 +1,3 @@
-import file_copy
 import argparse
 import logging
 import sys
@@ -23,15 +22,11 @@ def arg_parser() -> tuple:
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('xml_file')
-    parser.add_argument('-f', '--force', action='store_true', help='Replace file flag')
-    parser.add_argument('-i', '--ignore', action='store_true', help='Ignore errors flag')
-    parser.add_argument('-c', '--create', action='store_true', help='Create dst folder')
     args = parser.parse_args()
-    return args.xml_file, args.ignore, args.create, args.force
+    return pass
 
 
 if __name__ == '__main__':
-    xml_file, error_ignore, folder_create, file_replace = arg_parser()
     root_logger = logging.getLogger()
     set_logger(root_logger)
-    file_copy.main(xml_file=xml_file, error_ignore=error_ignore, folder_create=folder_create, file_replace=file_replace)
+    file_copy.main(xml_file=xms_file, error_ignore=error_ignore, folder_create=folder_create, file_replace=file_replace)

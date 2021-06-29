@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger("logger")
 
 
-def parse_xml(xml_file: str) -> List[Tuple[str, str, str]]:
+def parse_xml(xml_file: str) -> List[Tuple[str, ...]]:
     tree = ET.parse(xml_file)
     root = tree.getroot()
     return [(item.get('source_path'), item.get('destination_path'), item.get('file_name')) for item in root]
