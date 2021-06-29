@@ -1,0 +1,22 @@
+<config>
+    <file
+            source_path="C:\Windows\system32"
+            destination_path="C:\Program files"
+            file_name="kernel32.dll"
+    />
+    <file
+            source_path="/var/log"
+            destination_path="/etc"
+            file_name="server.log"
+    />
+    <file
+            source_path="/etc"
+            destination_path="/Users/artem/"
+            file_name="mail.rc"
+    />
+        <file
+            source_path="/etc"
+            destination_path="/Users/artem/1"
+            file_name="mail.rc"
+    />
+</config>
