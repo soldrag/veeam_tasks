@@ -1,7 +1,7 @@
 import argparse
 import logging
 import sys
-import test_cases
+import importlib
 
 
 def set_logger(logger) -> None:
@@ -16,20 +16,19 @@ def set_logger(logger) -> None:
     logger.addHandler(handler)
 
 
-def arg_parser() -> tuple:
+def arg_parser() -> str:
     """
     The function parses cmd arguments. If there are no arguments, it uses the default values.
     :return: tuple of parsed values
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('task_file', help='Path to file with tasks')
-    parser.add_argument('path_to_files', help='Path to directory with target files')
+    parser.add_argument('test_module', help='Path to file with tasks')
     args = parser.parse_args()
-    return args.task_file, args.path_to_files
+    return args.test_module
 
 
 if __name__ == '__main__':
-    task_file, path_to_files = arg_parser()
+    test_module = arg_parser()
     root_logger = logging.getLogger()
     set_logger(root_logger)
-    check_hash.main(task_file, path_to_files)
+    importlib.import_module(test_module).run_tests()
