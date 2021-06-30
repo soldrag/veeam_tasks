@@ -19,6 +19,7 @@ def cls_logger():
                 decorated_atr = logger_for_method(cls, atr)
                 setattr(cls, atr_name, decorated_atr)
         return cls
+
     return decorator
 
 
@@ -28,6 +29,7 @@ def logger_for_method(cls, func):
         logger.info(f'{doc}')
         func(self)
         return func
+
     return logged_method
 
 

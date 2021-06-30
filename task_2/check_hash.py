@@ -1,10 +1,10 @@
 import hashlib
 from os.path import isfile, join
 import string
-from typing import Tuple, Union
+from typing import Tuple
 
 
-def parse_line(arguments_line: list) -> Union[Tuple[str, ...], bool]:
+def parse_line(arguments_line: list) -> Tuple[str, ...]:
     file_name, hash_function, hash_result, *_ = arguments_line
     return file_name, hash_function.lower(), hash_result
 
@@ -51,7 +51,6 @@ def main(task_file: str, path: str) -> None:
             file_path = join(path, file_name)
             if not validate_file(file_path):
                 print(f'{file_name} NOT FOUND')
-                print(f'{file_name} FAIL')
                 continue
             if not validate_hash_function(hash_function):
                 print(f'{file_name} FAIL')
@@ -64,8 +63,3 @@ def main(task_file: str, path: str) -> None:
                 print(f'{file_name} OK')
             else:
                 print(f'{file_name} FAIL')
-
-
-if __name__ == '__main__':
-    pass
-    main('task.txt', '.')
