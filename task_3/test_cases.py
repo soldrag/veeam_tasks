@@ -34,7 +34,7 @@ class TestCase1(AbstractTestCase):
 
 class TestCase2(AbstractTestCase):
     def prep(self, *args, **kwargs):
-        if psutil.virtual_memory().total < 1073741824 * 10:
+        if psutil.virtual_memory().total < 1073741824:
             raise NotEnoughSystemMemoryError()
 
     def run(self):
