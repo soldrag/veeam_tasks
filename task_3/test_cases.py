@@ -6,7 +6,7 @@ from random import randbytes
 from abstract_testcase import AbstractTestCase
 import logging
 
-logger = logging.getLogger('logger')
+logger = logging.getLogger()
 
 
 def cls_logger():

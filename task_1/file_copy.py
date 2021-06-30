@@ -5,7 +5,7 @@ import os
 import shutil
 import logging
 
-logger = logging.getLogger("logger")
+logger = logging.getLogger()
 
 
 def parse_xml(xml_file: str) -> List[Tuple[str, ...]]:
@@ -16,7 +16,7 @@ def parse_xml(xml_file: str) -> List[Tuple[str, ...]]:
 
 def check_exists_file(source_path: str, file_name: str) -> None:
     if not isfile(join(source_path, file_name)):
-        raise FileNotFoundError(f"File '{file_name}' not found.")
+        raise FileNotFoundError(f'File "{file_name}" not found.')
 
 
 def checking_for_create_folder(destination_path: str, create_folder_flag: bool) -> None:
@@ -24,15 +24,15 @@ def checking_for_create_folder(destination_path: str, create_folder_flag: bool) 
         if create_folder_flag:
             os.mkdir(destination_path)
         else:
-            raise FileNotFoundError(f"Directory '{destination_path}' not found.")
+            raise FileNotFoundError(f'Directory "{destination_path}" not found.')
 
 
 def checking_for_replace(destination_path: str, file_name: str, file_replace_flag: bool) -> bool:
     if file_replace_flag or not isfile(join(destination_path, file_name)):
         flag = True
     else:
-        logger.warning(f"File '{join(destination_path, file_name)}' already exist.")
-        flag = input(f"You wanna replace '{join(destination_path, file_name)}' (y, n)? ").lower() == "y"
+        logger.warning(f'File "{join(destination_path, file_name)}" already exist.')
+        flag = input(f'You wanna replace "{join(destination_path, file_name)}" (y, n)? ').lower() == 'y'
     return flag
 
 
@@ -53,7 +53,7 @@ def main(xml_file: str,
             if not checking_for_replace(destination_path, file_name, file_replace):
                 continue
             copy_file(source_path, destination_path, file_name)
-            logger.info(f"File '{file_name}' successfully copied to '{destination_path}' ")
+            logger.info(f'File "{file_name}" successfully copied to "{destination_path}" ')
         except (FileNotFoundError, PermissionError) as err:
             if error_ignore:
                 logger.error(err)
@@ -62,5 +62,5 @@ def main(xml_file: str,
                 raise err
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     pass

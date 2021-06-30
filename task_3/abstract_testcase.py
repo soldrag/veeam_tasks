@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import logging
 
-logger = logging.getLogger("logger")
+logger = logging.getLogger()
 
 
 class AbstractTestCase(ABC):
