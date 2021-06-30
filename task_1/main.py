@@ -1,4 +1,4 @@
-import file_copy
+from file_copy import main
 import argparse
 import logging
 import sys
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     xml_file, error_ignore, folder_create, file_replace = arg_parser()
     root_logger = logging.getLogger()
     set_logger(root_logger)
-    file_copy.main(xml_file=xml_file, error_ignore=error_ignore, folder_create=folder_create, file_replace=file_replace)
+    main(xml_file=xml_file, error_ignore=error_ignore, folder_create=folder_create, file_replace=file_replace)
