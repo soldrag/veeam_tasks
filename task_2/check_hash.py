@@ -51,10 +51,13 @@ def main(task_file: str, path: str) -> None:
             file_path = join(path, file_name)
             if not validate_file(file_path):
                 print(f'{file_name} NOT FOUND')
+                print(f'{file_name} FAIL')
                 continue
             if not validate_hash_function(hash_function):
+                print(f'{file_name} FAIL')
                 continue
             if not validate_hash_result(hash_result, hash_function):
+                print(f'{file_name} FAIL')
                 continue
             file_hash = get_file_hash(file_path, hash_function)
             if file_hash == hash_result:

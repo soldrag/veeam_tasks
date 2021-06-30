@@ -1,7 +1,7 @@
 import argparse
 import logging
 import sys
-import check_hash
+import test_cases
 
 
 def set_logger(logger) -> None:
