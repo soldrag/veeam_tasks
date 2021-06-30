@@ -33,7 +33,7 @@ def get_file_hash(file_path: str, hash_function) -> str:
     hash_functions = {
         'md5': hashlib.md5,
         'sha1': hashlib.sha1,
-        'sha256': hashlib.sha256()
+        'sha256': hashlib.sha256
     }
     file_hash = hash_functions.get(hash_function)()
     with open(file_path, 'rb') as f:
