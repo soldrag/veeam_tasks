@@ -10,7 +10,7 @@ logger = logging.getLogger()
 
 
 def cls_logger():
-    """Decorator for classes. Getts all attributes in class, filter dunder and not callable, then decorate."""
+    """Decorator for classes. Gets all attributes in class, filter dunder and not callable, then decorate."""
     def decorator(cls):
         for atr_name in dir(cls):
             if atr_name.startswith('__'):
@@ -24,13 +24,13 @@ def cls_logger():
     return decorator
 
 
-def logger_for_method(cls, func):
+def logger_for_method(cls, atr):
     """Adds logger to the attribute"""
     def logged_method(self):
-        doc = getattr(cls.__bases__[0], func.__name__).__doc__
+        doc = getattr(cls.__bases__[0], atr.__name__).__doc__
         logger.info(f'{doc}')
-        func(self)
-        return func
+        atr(self)
+        return atr
 
     return logged_method
 
