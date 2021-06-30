@@ -17,7 +17,8 @@ def validate_file(file_path: str) -> bool:
     return isfile(file_path)
 
 
-def validate_hash_function(hash_function: str) -> object:
+def validate_hash_function(hash_function: str) -> bool:
+    """Validating supports hash function"""
     list_supported_hashes = ['md5', 'sha1', 'sha256']
     return hash_function in list_supported_hashes
 
