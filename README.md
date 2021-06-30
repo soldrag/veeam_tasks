@@ -4,7 +4,18 @@
 
 ### Пример
 Конфигурационный файл:
- <config>     <file             source_path="C:\Windows\system32"             destination_path="C:\Program files"             file_name="kernel32.dll"     />     <file             source_path="/var/log"             destination_path="/etc"             file_name="server.log"     /> </config>
+<config>
+  <file
+        source_path="C:\Windows\system32"
+        destination_path="C:\Program files"
+        file_name="kernel32.dll"
+        />
+  <file
+        source_path="/var/log"
+        destination_path="/etc"
+        file_name="server.log"
+        />
+</config>
 
 ## task_2
 Дан файл, содержащий имена файлов, алгоритм хэширования (один из MD5/SHA1/SHA256) и соответствующие им хэш-суммы, вычисленные по соответствующему алгоритму и указанные в файле через пробел. Напишите программу, читающую данный файл и проверяющую целостность файлов.
