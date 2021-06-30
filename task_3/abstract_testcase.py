@@ -5,6 +5,8 @@ logger = logging.getLogger()
 
 
 class AbstractTestCase(ABC):
+    """Abstract class for testcases"""
+
     def __init__(self, tc_id: int, name: str):
         self.tc_id = tc_id
         self.name = name
@@ -15,7 +17,7 @@ class AbstractTestCase(ABC):
 
     @abstractmethod
     def prep(self):
-        """Start prepare for testcase"""
+        """Start prepare for testcase"""  # These docstrings uses for logging
         pass
 
     @abstractmethod

@@ -8,6 +8,7 @@ logger = logging.getLogger()
 
 
 def parse_line(arguments_line: list) -> Tuple[str, ...]:
+    """Parsing line in config file"""
     file_name, hash_function, hash_result, *_ = arguments_line
     return file_name, hash_function.lower(), hash_result
 
@@ -22,6 +23,7 @@ def validate_hash_function(hash_function: str) -> object:
 
 
 def validate_hash_result(hash_result: str, hash_function: str) -> bool:
+    """Validating hash from tasks file."""
     is_hex = all(digit in string.hexdigits for digit in hash_result)
     len_validator = {
         'md5': 32,
@@ -33,6 +35,7 @@ def validate_hash_result(hash_result: str, hash_function: str) -> bool:
 
 
 def get_file_hash(file_path: str, hash_function) -> str:
+    """Getting file hash. Uses 1Kb chunks"""
     hash_functions = {
         'md5': hashlib.md5,
         'sha1': hashlib.sha1,
@@ -46,6 +49,7 @@ def get_file_hash(file_path: str, hash_function) -> str:
 
 
 def main(task_file: str, path: str) -> None:
+    """The main function call all other functions and manages the process."""
     with open(task_file, 'r') as f:
         while line := f.readline().split():
             if len(line) < 3:
