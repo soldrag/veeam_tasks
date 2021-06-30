@@ -12,7 +12,7 @@ class AbstractTestCase(ABC):
         testcase_type = self.__class__.__name__
         testcase_id = self.tc_id
         testcase_name = self.name
-        logger.info(f'Initialize testcase type: {testcase_type}, id: {testcase_id}, name: {testcase_name}.')
+        logger.info(f'Initialize testcase type: {testcase_type}, id: {testcase_id}, name: {testcase_name}')
 
     @abstractmethod
     def prep(self):
@@ -26,15 +26,15 @@ class AbstractTestCase(ABC):
 
     @abstractmethod
     def clean_up(self):
-        """Cleaning after testcase"""
+        """Cleaning after testcase\n\n"""
 
     def execute(self):
         """Execute test processes"""
         try:
             self.prep()
             self.run()
-            logger.info(f'Test "{self.name}" successes\n\n')
+            logger.info(f'Test "{self.name}" successes')
         except BaseException as err:
-            logger.error(f'Test "{self.name}" filed. {err}\n\n')
+            logger.error(f'Test "{self.name}" filed. {err}')
         finally:
             self.clean_up()

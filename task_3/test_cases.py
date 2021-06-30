@@ -4,7 +4,6 @@ import os
 import psutil
 from random import randbytes
 from abstract_testcase import AbstractTestCase
-from functools import wraps
 import logging
 
 logger = logging.getLogger('logger')
@@ -12,26 +11,24 @@ logger = logging.getLogger('logger')
 
 def cls_logger():
     def decorator(cls):
-        for method in dir(cls):
-            if method.startswith('__'):
+        for atr_name in dir(cls):
+            if atr_name.startswith('__'):
                 continue
-            atr = getattr(cls, method)
+            atr = getattr(cls, atr_name)
             if hasattr(atr, '__call__'):
-                decorated_atr = log_decorator(cls)(atr)
-                setattr(cls, method, decorated_atr)
+                decorated_atr = logger_for_method(cls, atr)
+                setattr(cls, atr_name, decorated_atr)
         return cls
     return decorator
 
 
-def log_decorator(cls):
-    def decorator(func):
-        def logged_method(self):
-            method_doc_string = getattr(cls.__bases__[0], func.__name__).__doc__
-            logger.info(f'{method_doc_string}.')
-            func(self)
-            return func
-        return logged_method
-    return decorator
+def logger_for_method(cls, func):
+    def logged_method(self):
+        doc = getattr(cls.__bases__[0], func.__name__).__doc__
+        logger.info(f'{doc}')
+        func(self)
+        return func
+    return logged_method
 
 
 class NotEvenSecondsError(Exception):
