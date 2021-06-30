@@ -45,9 +45,9 @@ class NotEnoughSystemMemoryError(Exception):
 @cls_logger()
 class TestCase1(AbstractTestCase):
     def prep(self):
-        """123"""
-        if not int(time.time()) % 2:
-            raise NotEvenSecondsError()
+        seconds = int(time.time())
+        if int(seconds) % 2:
+            raise NotEvenSecondsError(f'Seconds not even, seconds={seconds}')
 
     def run(self):
         print(*os.listdir(Path.home()), sep='\n')
@@ -55,19 +55,12 @@ class TestCase1(AbstractTestCase):
     def clean_up(self):
         pass
 
-    def execute(self):
-        try:
-            super().execute()
-            logger.info(f'Test "{self.name}" successes\n\n')
-        except NotEvenSecondsError as err:
-            logger.error(f'Test "{self.name}" filed. {err}\n\n')
-
 
 @cls_logger()
 class TestCase2(AbstractTestCase):
-    def prep(self, *args, **kwargs):
+    def prep(self):
         if psutil.virtual_memory().total < 1073741824:
-            raise NotEnoughSystemMemoryError()
+            raise NotEnoughSystemMemoryError('System memory < 1Gb.')
 
     def run(self):
         with open('test', 'wb') as file:
@@ -76,13 +69,6 @@ class TestCase2(AbstractTestCase):
 
     def clean_up(self):
         os.remove('test')
-
-    def execute(self):
-        try:
-            super().execute()
-            logger.info(f'Test "{self.name}" successes\n\n')
-        except NotEnoughSystemMemoryError as err:
-            logger.error(f'Test "{self.name}" filed. {err}\n\n')
 
 
 def run_tests():

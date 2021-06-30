@@ -25,7 +25,7 @@ def arg_parser() -> tuple:
     parser.add_argument('xml_file')
     parser.add_argument('-f', '--force', action='store_true', help='Replace file flag')
     parser.add_argument('-i', '--ignore', action='store_true', help='Ignore errors flag')
-    parser.add_argument('-c', '--create', action='store_true', help='Create dst folder')
+    parser.add_argument('-c', '--create', action='store_true', help='Create destination folders')
     args = parser.parse_args()
     return args.xml_file, args.ignore, args.create, args.force
 
