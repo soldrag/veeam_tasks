@@ -54,6 +54,7 @@ def main(task_file: str, path: str) -> None:
     with open(task_file, 'r') as f:
         while line := f.readline().split():
             if len(line) < 3:
+                print(f'{file_name} FAIL')
                 continue
             file_name, hash_function, hash_result = parse_line(line)
             file_path = join(path, file_name)
